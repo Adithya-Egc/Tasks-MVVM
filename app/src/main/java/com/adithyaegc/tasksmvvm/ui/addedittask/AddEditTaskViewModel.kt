@@ -17,7 +17,7 @@ class AddEditTaskViewModel @Inject constructor(
      * by using SavedStateHandle we can get the arguments data directly
      * by using .get method inside it we need to add the same key value
      * where we used inside argument name
-     */
+     * */
     val task = state.get<Task>("task")
 
     var taskName = state.get<String>("taskName") ?: task?.title ?: ""

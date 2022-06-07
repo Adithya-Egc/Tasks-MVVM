@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Tasks-MVVM/app/src/main/res/layout/activity_main.xml" value="0.2734375" />
+        <entry key="..\:/Tasks-MVVM/app/src/main/res/layout/fragment_add_edit_task.xml" value="0.2734375" />
         <entry key="..\:/TasksMVVM/app/src/main/res/drawable/ic_filter.xml" value="0.1865" />
         <entry key="..\:/TasksMVVM/app/src/main/res/layout/activity_main.xml" value="0.26927083333333335" />
         <entry key="..\:/TasksMVVM/app/src/main/res/layout/fragment_add_edit_task.xml" value="0.4" />
