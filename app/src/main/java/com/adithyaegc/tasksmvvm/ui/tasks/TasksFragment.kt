@@ -17,6 +17,7 @@ import com.adithyaegc.tasksmvvm.R
 import com.adithyaegc.tasksmvvm.data.SortOrder
 import com.adithyaegc.tasksmvvm.data.Task
 import com.adithyaegc.tasksmvvm.databinding.FragmentTasksBinding
+import com.adithyaegc.tasksmvvm.util.exhaustive
 import com.adithyaegc.tasksmvvm.util.onQueryTextChanged
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,6 +59,10 @@ class TasksFragment : Fragment(R.layout.fragment_tasks), TaskAdapter.OnItemClick
                     taskViewModel.onTaskSwipe(task)
                 }
             }).attachToRecyclerView(binding.rView)
+
+            fab.setOnClickListener {
+                taskViewModel.onAddNewTaskClick()
+            }
         }
 
         taskViewModel.task.observe(viewLifecycleOwner) {
@@ -72,7 +77,20 @@ class TasksFragment : Fragment(R.layout.fragment_tasks), TaskAdapter.OnItemClick
                             .setAction("UNDO") {
                                 taskViewModel.onUndoDeletedTask(event.task)
                             }.show()
-                }
+                    is TaskViewModel.TaskEvent.NavigateToAddTask -> {
+                        val action =
+                            TasksFragmentDirections.actionTasksFragment2ToAddEditTaskFragment2("New Task")
+                        findNavController().navigate(action)
+                    }
+                    is TaskViewModel.TaskEvent.NavigateToEditTask -> {
+                        val action =
+                            TasksFragmentDirections.actionTasksFragment2ToAddEditTaskFragment2(
+                                "Edit Task",
+                                event.task
+                            )
+                        findNavController().navigate(action)
+                    }
+                }.exhaustive
             }
         }
 
